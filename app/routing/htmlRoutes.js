@@ -24,6 +24,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "/../public/custom.html"));
   });
 
+  app.get("/keyword", function(req, res) {
+    res.sendFile(path.join(__dirname, "/../public/keyword.html"));
+  });
+
   // If no matching route is found default to home
   app.use(function(req, res) {
     res.sendFile(path.join(__dirname, "/../public/home.html"));
