@@ -24,57 +24,28 @@
 
 <body>
 
-  <div class="container">
+  <div class="container text-center">
     <br>
-    <h1 class="text-warning text-center">SEARCH BANNER BY KEYWORD</h1>
+    <h1 class="text-warning text-center">SEARCH BANNER</h1>
     <hr>
-
-    <h3><strong>Product Information</strong></h3>
-    <h4>Product Name</h4>
+    <br>
+    <h2><strong>ENTER A KEYWORD</strong></h2>
+    <br>
+    <br>
     <input type="text" id="item" class="form-control" required>
-    <h4>Brand Name</h4>
-    <input type="text" id="brandname" class="form-control" required>
-    <h4>Country</h4>
-    <input type="text" id="country" class="form-control" required>
-    <h4>Upload Background Photo</h4>
-    <input type="text" id="photo" class="form-control" required>
-
-    <hr>
-
-    <h3><strong>Selling Point<strong></h3>
-    <h4>What's the most desirable characteristic of your product?</h4>
-    <select class="chosen-select" id="q1">
-      <option value=""></option>
-      <option value="new">It's new!</option>
-      <option value="popular">It's popular!</option>
-      <option value="style">It's stylish!</option>
-      <option value="seasonal">It's seasonal!</option>
-      <option value="price">It has discount!</option>
-      <option value="health">It's healthy!</option>
-    </select>
-
-    <h3><strong>Category</strong></h3>
-    <h4>What categoy is your product in?</h4>
-    <select class="chosen-select" id="q2">
-      <option value=""></option>
-      <option value="generic">Generic - choose this for more options</option>
-      <option value="electronics">Electronics</option>
-      <option value="fashion">Fashion</option>
-      <option value="automobile">Automobile</option>
-      <option value="home">Home and Living</option>
-    </select>
 
     <br>
     <br>
 
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-warning btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
-     Submit</button>
-
+    <button type="submit" class="btn btn-warning btn-lg" id="submit" style="width: 33%; height: auto; font-size: 155%;"><i class="fa fa-check-circle" aria-hidden="true"></i>
+     SEARCH</button>
+    <br>
+    <br>
     <hr>
     <footer class="footer">
       <div class="container">
-         <p><a href="/api/friends">Documentation</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a>  | © 2018 Copyright Alibaba Group</p>
+         <p><a href="/api/friends">Documentation</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a>  | © 2018 Copyright </p>
       </div>
     </footer>
 
@@ -154,16 +125,6 @@
           photo: $("#photo").val(),
           scores: [
             $("#q1").val(),
-            $("#q2").val(),
-            $("#q3").val(),
-            $("#q4").val(),
-            $("#q5").val(),
-            $("#q6").val(),
-            $("#q7").val(),
-            $("#q8").val(),
-            $("#q9").val(),
-            $("#q10").val()
-          ]
         };
 
         // AJAX post the data to the friends API.
@@ -178,7 +139,7 @@
 
         });
       } else {
-        alert("Please fill out all fields before submitting!");
+        alert("Please enter a KEYWORD!");
       }
     });
   </script>
