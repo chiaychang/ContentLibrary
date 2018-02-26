@@ -48,7 +48,7 @@ module.exports = function(app) {
     // Here we loop through all the friend possibilities in the database.
     for (var i = 0; i < content.length; i++) {
 
-       if (content[i].selling_points == searchData.sellingPt && content[i].category == searchData.category && customizable = false ){
+       if (content[i].selling_points == searchData.sellingPt && content[i].category == searchData.category && content[i].customizable = false ){
          
               bestMatch.push(content[i]);
 
