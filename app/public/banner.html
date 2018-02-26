@@ -65,6 +65,14 @@
       <img id="image" class="hidden">
       <p id="title"></p>
     </div>
+    <br>
+    <div> 
+       <button class="btn btn-warning btn-lg hidden multilang" id="EN" style="width: 13%; height: auto; font-size: 155%;">EN</button>
+       <button class="btn btn-warning btn-lg hidden multilang" id="RU" style="width: 13%; height: auto; font-size: 155%;">RU</button>
+       <button class="btn btn-warning btn-lg hidden multilang" id="ES" style="width: 13%; height: auto; font-size: 155%;">ES</button>
+       <button class="btn btn-warning btn-lg hidden multilang" id="PT" style="width: 13%; height: auto; font-size: 155%;">PT</button>
+       <button class="btn btn-warning btn-lg hidden multilang" id="FR" style="width: 13%; height: auto; font-size: 155%;">FR</button>
+    </div>
 
     <hr>
     <footer class="footer" position="fixed">
@@ -136,10 +144,34 @@
 
           var pick = data[Math.floor(Math.random() * data.length)];
 
+          $(".multilang").removeClass("hidden");
           $("#title").text(pick.en_us);
           $("#image").removeClass("hidden");
           $("#image").attr("src", pick.url);
           $("#submit").text("SHOW ANOTHER ONE");
+
+
+          $("#EN").on("click", function(){
+             $("#title").text(pick.en_us); 
+          });
+
+
+          $("#ES").on("click", function(){
+             $("#title").text(pick.es_es); 
+          });
+
+          $("#RU").on("click", function(){
+            $("#title").text(pick.ru_ru); 
+          });
+
+          $("#PT").on("click", function(){
+            $("#title").text(pick.pt_br); 
+          });
+
+
+          $("#FR").on("click", function(){
+            $("#title").text(pick.fr_fr); 
+          });
 
 
           // for (var i = 0; i < data.length; i++) {
