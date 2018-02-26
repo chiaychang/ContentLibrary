@@ -62,7 +62,7 @@
     <hr class="invisible">
     <ul id="banner"></ul>
     <div id="result">
-      <img id="image" src="https://i.imgur.com/M4CL9jt.jpg">
+      <img id="image" class="hidden">
       <p id="title"></p>
     </div>
 
@@ -137,6 +137,8 @@
           var pick = data[Math.floor(Math.random() * data.length)];
 
           $("#title").text(pick.en_us);
+          $("#image").removeClass("hidden");
+          $("#image").attr("src", pick.url);
           $("#submit").text("SHOW ANOTHER ONE");
 
 
@@ -146,7 +148,7 @@
          
           
              
-          // $("#match-img").attr("src", data.photo);
+        
 
           // }
 
@@ -171,9 +173,11 @@
   </script>
   <style type="text/css">
     #title{
-       text-align: center;
-       font-size: 20px;
-        
+      text-align: center;
+      font-size: 21px;
+      position: fixed;
+      top: 56%;
+      left: 17%;      
     }
 
     #image {
