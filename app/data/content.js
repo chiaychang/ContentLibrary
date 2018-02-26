@@ -500,17 +500,6 @@ var content = [
     fr_fr: "VOTRE STYLE URBAIN"
   },
   {
-    category: "fashion",
-    type: "title",
-    selling_points: "style",
-    customizable: false,
-    en_us: "HANDSOME GENTLEMAN WANTED",
-    ru_ru: "ДЖЕНТЛЬМЕН С ИГОЛОЧКИ",
-    es_es: "Clásico pero moderno",
-    pt_br: "QUER SER UM AGENTE SECRETO?",
-    fr_fr: "TOUJOURS SUR VOTRE 31"
-  },
-  {
     category: "travel",
     type: "title",
     selling_points: "health",
@@ -557,7 +546,7 @@ var content = [
   {
     category: "fashion",
     type: "title",
-    selling_points: "style",
+    selling_points: "popular",
     customizable: false,
     en_us: "Get down to business with handsome-looking men's formal wear",
     ru_ru: "Ваш костюм скажет всё за вас",
@@ -590,7 +579,7 @@ var content = [
   {
     category: "fashion",
     type: "title",
-    selling_points: "style",
+    selling_points: "popular",
     customizable: false,
     en_us: "POWERFUL CLOTHES FOR POWERFUL WOMEN",
     ru_ru: "КРАСИВА И УВЕРЕНА В СЕБЕ",

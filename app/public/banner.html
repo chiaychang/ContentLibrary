@@ -60,10 +60,14 @@
      SUBMIT</button>
 
     <hr class="invisible">
-    <ul></ul>
+    <ul id="banner"></ul>
+    <div id="result">
+      <img id="image" src="https://i.imgur.com/M4CL9jt.jpg">
+      <p id="title"></p>
+    </div>
 
     <hr>
-    <footer class="footer">
+    <footer class="footer" position="fixed">
       <div class="container">
          <p><a href="/api/friends">Documentation</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a>  | © 2018 Copyright </p>
       </div>
@@ -127,27 +131,57 @@
         $.post("/api/content", searchData, function(data) {
 
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-          console.log(data[0]);
+          // console.log(data[0]);
 
-          $("hr.invisible").toggleClass("visible");
 
-          for (var i = 0; i < data.length; i++) {
+          var pick = data[Math.floor(Math.random() * data.length)];
 
-          $("ul").append("<button class="+ i +" en_us="+ data[i].en_us+" >" + data[i].en_us + "</button>");
-                   
+          $("#title").text(pick.en_us);
+          $("#submit").text("SHOW ANOTHER ONE");
 
-          // $("#match-name").text(data.name);
+
+          // for (var i = 0; i < data.length; i++) {
+
+          // $("#banner").append("<button value="+ i + ">" + data[i].en_us + "</button>");
+         
+          
+             
           // $("#match-img").attr("src", data.photo);
 
-          // // Show the modal with the best match
-          // $("#results-modal").modal("toggle");
-          }
+          // }
+
+          
+          // $("button").on("click", function(event) {
+              
+          //     console.log($(this).value);
+   
+          //    });
+
+
         });
       } else {
         alert("Please fill out all fields before submitting!");
       }
+
+      
     });
+
+  
+
   </script>
+  <style type="text/css">
+    #title{
+       text-align: center;
+       font-size: 20px;
+        
+    }
+
+    #image {
+      width: 750px;
+      height: 300px;
+    }
+
+  </style>>
 
 </body>
 
