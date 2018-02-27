@@ -35,8 +35,8 @@
     <input type="text" id="brandname" class="form-control" required>
     <h4>Country</h4>
     <input type="text" id="country" class="form-control" required>
-    <h4>Upload Background Photo</h4>
-    <input type="text" id="photo" class="form-control" required>
+   <!--  <h4>Upload Background Photo</h4>
+    <input type="text" id="photo" class="form-control" required> -->
 
     <hr>
 
@@ -72,34 +72,32 @@
     <button type="submit" class="btn btn-info btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
      SUBMIT</button>
 
+    <br>
+
+    <div id="result" class="text-center">
+      <img id="image" class="hidden">
+      <p id="title"></p>
+    </div>
+    <div class="text-center"> 
+       <button class="btn btn-warning btn-lg hidden multilang" id="EN" style="width: 13%; height: auto; font-size: 155%;">EN</button>
+       <button class="btn btn-warning btn-lg hidden multilang" id="RU" style="width: 13%; height: auto; font-size: 155%;">RU</button>
+       <button class="btn btn-warning btn-lg hidden multilang" id="ES" style="width: 13%; height: auto; font-size: 155%;">ES</button>
+       <button class="btn btn-warning btn-lg hidden multilang" id="PT" style="width: 13%; height: auto; font-size: 155%;">PT</button>
+       <button class="btn btn-warning btn-lg hidden multilang" id="FR" style="width: 13%; height: auto; font-size: 155%;">FR</button>
+       <br><br>
+      <button class="btn btn-danger btn-lg hidden multilang" id="FR" style="width: 20%; height: auto; font-size: 155%;">EXPORT
+        <i class="fa fa-arrow-circle-right"></i></button>
+    </div>
 
     <hr>
-    <footer class="footer">
+    <footer class="footer fixed">
       <div class="container">
-         <p><a href="/api/friends">Documentation</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a>  | © 2018 Copyright Alibaba Group</p>
+         <p><a href="/home">BANNER GENIUS HOME</a> | <a href="/api/friends">Documentation</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a>  | © 2018 Copyright Alibaba Group</p>
       </div>
     </footer>
 
   </div>
-
-  <!-- Modal -->
-  <div id="results-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title"><strong>Best Match</strong></h2>
-        </div>
-        <div class="modal-body">
-          <h2 id="match-name"></h2>
-          <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+      
 
     </div>
   </div>
@@ -150,35 +148,61 @@
 
       // If all required fields are filled
       if (validateForm()) {
+          var item = $("#item").val();
+          var brandname = $("#brandname").val();
+          var country = $("#country").val();
         // Create an object for the user"s data
         var userData = {
-          item: $("#item").val(),
-          brandname: $("#brandname").val(),
-          country: $("#country").val(),
+          // item: $("#item").val(),
+          // brandname: $("#brandname").val(),
+          // country: $("#country").val(),
           sellingPt: $("#q1").val(),
-          scores: [
-            $("#q1").val(),
-            $("#q2").val(),
-            $("#q3").val(),
-            $("#q4").val(),
-            $("#q5").val(),
-            $("#q6").val(),
-            $("#q7").val(),
-            $("#q8").val(),
-            $("#q9").val(),
-            $("#q10").val()
-          ]
+          category: $("#q2").val()
         };
 
         // AJAX post the data to the friends API.
-        $.post("/api/friends", userData, function(data) {
+        $.post("/api/customize", userData, function(data) {
 
-          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-          $("#match-name").text(data.name);
-          $("#match-img").attr("src", data.photo);
+          console.log(data);
+          var pick = data[Math.floor(Math.random() * data.length)];
+          console.log(pick);
+        
+          pick.en_us = pick.en_us.replace("{item}", item).replace("{country}", country).replace("{brandname}",brandname);
+          pick.es_es = pick.es_es.replace("{item}", item).replace("{country}", country).replace("{brandname}",brandname);
+          pick.ru_ru = pick.ru_ru.replace("{item}", item).replace("{country}", country).replace("{brandname}",brandname);
+          pick.pt_br = pick.pt_br.replace("{item}", item).replace("{country}", country).replace("{brandname}",brandname);
+          pick.fr_fr = pick.fr_fr.replace("{item}", item).replace("{country}", country).replace("{brandname}",brandname);
+          
 
-          // Show the modal with the best match
-          $("#results-modal").modal("toggle");
+
+          $(".multilang").removeClass("hidden");
+          $("#title").text(pick.en_us);
+          $("#image").removeClass("hidden");
+          $("#image").attr("src", pick.url);
+          $("#submit").text("SHOW ANOTHER ONE");
+
+
+          $("#EN").on("click", function(){
+             $("#title").text(pick.en_us); 
+          });
+
+
+          $("#ES").on("click", function(){
+             $("#title").text(pick.es_es); 
+          });
+
+          $("#RU").on("click", function(){
+            $("#title").text(pick.ru_ru); 
+          });
+
+          $("#PT").on("click", function(){
+            $("#title").text(pick.pt_br); 
+          });
+
+
+          $("#FR").on("click", function(){
+            $("#title").text(pick.fr_fr); 
+          });
 
         });
       } else {
@@ -186,6 +210,21 @@
       }
     });
   </script>
+
+   <style type="text/css">
+    #title{
+      text-align: center;
+      font-size: 23px;
+      position: relative;
+      top: -170px;      
+    }
+
+    #image {
+      width: 750px;
+      height: 300px;
+    }
+
+  </style>
 
 </body>
 
